@@ -1,0 +1,37 @@
+@use 'sass:map';
+// Loading mask: overlays a certain area with a loading spinner and a faded out cover to prevent interaction
+.loading-mask {
+  &.loading {
+    position: relative;
+
+    &:before,
+    &:after {
+      position: absolute;
+      display: block;
+    }
+
+    &:before {
+      content: '';
+      top: -5px;
+      inset-inline-start: -5px;
+      bottom: -5px;
+      inset-inline-end: -5px;
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      width: 1.875rem;
+      height: 1.875rem;
+      inset-inline-start: 50%;
+      top: 50%;
+      animation: spin-wag 0.5s infinite linear;
+      mask-image: url('#{$images-root}icons/spinner.svg');
+      mask-repeat: no-repeat;
+      z-index: 2;
+      background: $color-teal;
+    }
+  }
+}

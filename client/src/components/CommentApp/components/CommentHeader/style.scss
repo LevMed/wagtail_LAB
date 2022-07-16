@@ -1,0 +1,135 @@
+.comment-header {
+  position: relative;
+
+  &__avatar {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    object-fit: cover;
+  }
+
+  &__author,
+  &__date {
+    max-width: calc(
+      100% - 110px
+    ); // Leave room for actions to the right and avatar to the left
+    margin: 0;
+    margin-inline-start: 45px;
+    font-size: 11px;
+    line-height: 15px;
+  }
+
+  &__date {
+    color: $color-grey-25;
+  }
+
+  &__actions {
+    position: absolute;
+    inset-inline-end: 0;
+  }
+
+  &__action {
+    float: left;
+    margin-inline-start: 5px;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+
+    &:hover {
+      background-color: $color-grey-7;
+    }
+
+    > button,
+    > details > summary {
+      // Hides triangle on Firefox
+      list-style-type: none;
+      // Hides triangle on Chrome
+      &::-webkit-details-marker {
+        display: none;
+      }
+      width: 30px;
+      height: 30px;
+      position: relative;
+      background-color: unset;
+      border: unset;
+      padding: 0;
+      box-sizing: border-box;
+
+      svg {
+        position: absolute;
+        top: 7.5px;
+        inset-inline-start: 7.5px;
+        width: 15px;
+        height: 15px;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    > details {
+      position: relative;
+
+      > div {
+        position: absolute;
+        inset-inline-end: 0;
+        top: 35px;
+      }
+    }
+
+    &--more {
+      > button,
+      > details > summary {
+        color: #767676;
+
+        // stylelint-disable-next-line max-nesting-depth
+        &:hover {
+          color: $color-grey-25;
+        }
+      }
+    }
+  }
+
+  &__more-actions {
+    background-color: #333;
+    color: $color-grey-5;
+    position: absolute;
+    z-index: 1000;
+    list-style: none;
+    text-align: start;
+    border-radius: 3px;
+
+    &:before {
+      content: '';
+      border: 6px solid transparent;
+      border-bottom-color: #333;
+      display: block;
+      position: absolute;
+      bottom: 100%;
+      inset-inline-end: 9px;
+    }
+
+    button {
+      display: block;
+      background: none;
+      border: 0;
+      color: #fff;
+      padding: 5px 10px;
+      font-size: 13px;
+      width: 100px;
+      text-align: start;
+
+      &:hover {
+        color: #aaa;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.comment--mode-deleting .comment-header,
+.comment-reply--mode-deleting .comment-header {
+  opacity: 0.5;
+}

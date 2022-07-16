@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Draftail #initEditor options 1`] = `
+Object {
+  "ariaDescribedBy": null,
+  "ariaExpanded": null,
+  "ariaLabel": null,
+  "ariaLabelledBy": null,
+  "ariaOwneeID": null,
+  "ariaRequired": null,
+  "autoCapitalize": null,
+  "autoComplete": null,
+  "autoCorrect": null,
+  "blockTypes": Array [],
+  "bottomToolbar": [Function],
+  "commandPalette": [Function],
+  "commandToolbar": [Function],
+  "commands": true,
+  "controls": Array [
+    Object {
+      "meta": [Function],
+    },
+  ],
+  "decorators": Array [],
+  "editorState": null,
+  "enableHorizontalRule": Object {
+    "description": "Horizontal line",
+  },
+  "enableLineBreak": Object {
+    "description": "Line break",
+    "icon": "M.436 633.471l296.897-296.898v241.823h616.586V94.117h109.517v593.796H297.333v242.456z",
+  },
+  "entityTypes": Array [
+    Object {
+      "block": [Function],
+      "source": [Function],
+      "type": "IMAGE",
+    },
+  ],
+  "inlineStyles": Array [],
+  "maxListNesting": 4,
+  "multiline": true,
+  "onBlur": null,
+  "onChange": null,
+  "onFocus": null,
+  "onSave": [Function],
+  "placeholder": "Write something or type ‘/’ to insert a block",
+  "plugins": Array [],
+  "rawContentState": null,
+  "readOnly": false,
+  "showRedoControl": false,
+  "showUndoControl": false,
+  "spellCheck": true,
+  "stateSaveInterval": 250,
+  "stripPastedStyles": false,
+  "textAlignment": null,
+  "textDirectionality": null,
+  "topToolbar": [Function],
+}
+`;
+
+exports[`Draftail #wrapWagtailIcon works 1`] = `
+<Icon
+  name="media"
+/>
+`;

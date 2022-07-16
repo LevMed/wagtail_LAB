@@ -1,0 +1,138 @@
+{
+  "name": "wagtail",
+  "version": "1.0.0",
+  "repository": "https://github.com/wagtail/wagtail",
+  "private": true,
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "browserslist": [
+    "Firefox ESR",
+    "last 2 Chrome versions",
+    "last 2 ChromeAndroid versions",
+    "last 2 Edge versions",
+    "last 1 Firefox version",
+    "last 2 iOS versions",
+    "last 3 Safari versions",
+    "not safari 13",
+    "not ie 11"
+  ],
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "tsx",
+      "json",
+      "node"
+    ],
+    "moduleNameMapper": {
+      "jquery": "<rootDir>/wagtail/admin/static_src/wagtailadmin/js/vendor/jquery-3.6.0.min.js"
+    },
+    "transform": {
+      "^.+\\.(js|ts|tsx)$": "ts-jest"
+    },
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/build/",
+      "client/tests/integration"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/"
+    ],
+    "setupFiles": [
+      "./client/tests/adapter.js",
+      "./client/tests/stubs.js",
+      "./client/tests/mock-fetch.js",
+      "./client/tests/mock-jquery.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@storybook/addon-controls": "^6.4.19",
+    "@storybook/addon-docs": "^6.4.19",
+    "@storybook/builder-webpack5": "^6.4.19",
+    "@storybook/manager-webpack5": "^6.4.19",
+    "@storybook/react": "^6.4.19",
+    "@types/draft-js": "^0.10.45",
+    "@types/jest": "^26.0.24",
+    "@types/react": "^16.14.21",
+    "@types/react-dom": "^16.0",
+    "@types/react-redux": "^7.1.20",
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
+    "@wagtail/eslint-config-wagtail": "^0.4.0",
+    "@wagtail/stylelint-config-wagtail": "^0.5.0",
+    "autoprefixer": "^10.4.2",
+    "babel-loader": "^8.2.3",
+    "copy-webpack-plugin": "^10.2.0",
+    "css-loader": "^6.5.1",
+    "cssnano": "^5.0.14",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-to-json": "^3.6.2",
+    "eslint": "^8.5.0",
+    "expose-loader": "^3.1.0",
+    "gettext-extractor": "^3.5.3",
+    "jest": "^26.6.3",
+    "mini-css-extract-plugin": "^2.4.5",
+    "postcss": "^8.4.7",
+    "postcss-loader": "^6.2.1",
+    "prettier": "^2.5.1",
+    "react-axe": "^3.5.4",
+    "react-test-renderer": "^16.14.0",
+    "redux-mock-store": "^1.3.0",
+    "sass": "^1.45.1",
+    "sass-loader": "^12.4.0",
+    "storybook-django": "^0.5.1",
+    "stylelint": "^14.2.0",
+    "tailwindcss": "^3.0.23",
+    "tailwindcss-vanilla-rtl": "^0.1.0",
+    "ts-jest": "^26.5.6",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.4",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "@tippyjs/react": "^4.2.6",
+    "a11y-dialog": "^7.4.0",
+    "draft-js": "^0.10.5",
+    "draftail": "^2.0.0-alpha.5",
+    "draftjs-filters": "^2.5.0",
+    "focus-trap-react": "^8.4.2",
+    "immer": "^9.0.6",
+    "js-cookie": "^2.2.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-redux": "^7.2.2",
+    "react-transition-group": "^1.1.3",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "telepath-unpack": "^0.0.3",
+    "tippy.js": "^6.3.7",
+    "uuid": "^8.3.2"
+  },
+  "scripts": {
+    "start": "webpack --config ./client/webpack.config.js --mode development --progress --watch",
+    "build": "webpack --config ./client/webpack.config.js --mode production",
+    "fix:js": "eslint --ext .js,.ts,.tsx --fix .",
+    "format": "prettier --write \"**/?(.)*.{css,scss,js,ts,tsx,json,yaml,yml}\"",
+    "lint:js": "eslint --ext .js,.ts,.tsx --report-unused-disable-directives .",
+    "lint:css": "stylelint **/*.scss",
+    "lint:format": "prettier --check \"**/?(.)*.{css,scss,js,ts,tsx,json,yaml,yml}\"",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:format",
+    "test": "npm run test:unit",
+    "test:unit": "jest",
+    "test:unit:watch": "jest --watch",
+    "test:unit:coverage": "jest --coverage",
+    "test:integration": "./client/tests/integration/node_modules/.bin/jest --config ./client/tests/integration/jest.config.js",
+    "storybook": "start-storybook -c client/storybook -p 6006 --no-open --no-version-updates --no-release-notes --quiet --modern",
+    "build-storybook": "build-storybook -c client/storybook --modern"
+  }
+}

@@ -1,0 +1,76 @@
+.tab-content {
+  .page-locked & {
+    cursor: not-allowed;
+    user-select: none;
+
+    > * {
+      pointer-events: none;
+    }
+  }
+}
+
+.w-tabs {
+  &__wrapper {
+    @apply w-mb-8 w-overflow-x-auto w-scrollbar-thin w-flex w-items-center w-justify-between w-flex-wrap w-gap-4;
+  }
+
+  &__list {
+    @include nice-padding();
+    @apply w-flex w-my-[3px] w-space-x-6 w-border-b w-border-grey-100 w-w-fit;
+  }
+
+  &__tab {
+    @apply w-label-3
+    w-box-border
+    w-inline-flex
+    w-text-grey-400
+    hover:w-text-primary
+    w-whitespace-nowrap
+    w-py-4
+    w-font-medium
+    w-relative
+    after:w-block
+    after:w-w-0
+    after:w-h-[2px]
+    after:w-bg-primary
+    after:w-absolute
+    after:w-left-0
+    after:-w-bottom-px
+    after:w-transition-all
+    after:forced-colors:w-h-1
+    after:forced-colors:w-bg-LinkText
+    hover:after:w-w-full
+    hover:after:forced-colors:w-w-full
+    motion-reduce:after:w-transition-none;
+
+    &[aria-selected='true'] {
+      @apply after:w-w-full w-text-primary after:forced-colors:w-w-full;
+    }
+  }
+
+  &__errors {
+    @apply w-hidden
+    w-absolute
+    -w-mr-3
+    w-py-0.5
+    w-px-[0.325rem]
+    w-top-1
+    -w-right-1
+    w-text-[0.5625rem]
+    w-font-bold
+    w-bg-critical-200
+    w-text-white
+    w-border
+    w-border-grey-50
+    w-rounded-[1rem];
+  }
+
+  // Optional animate attr for tabs to animate in
+  &[data-tabs-animate] &__panel {
+    @apply motion-reduce:w-transition-none w-transition w-duration-150 w-translate-y-1 w-opacity-0;
+
+    &.animate-in {
+      @apply w-translate-y-0 w-opacity-100;
+    }
+  }
+}

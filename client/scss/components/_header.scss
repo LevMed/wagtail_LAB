@@ -1,0 +1,205 @@
+@use 'sass:math';
+@use 'sass:color';
+
+.w-header {
+  @apply w-text-primary w-mb-8;
+
+  h1,
+  h2 {
+    @apply w-text-primary;
+    margin: 0;
+  }
+
+  h1 {
+    @apply w-h1;
+    position: relative;
+  }
+
+  .w-header__glyph {
+    position: absolute;
+    inset-inline-start: -1.5em;
+    vertical-align: text-top;
+
+    &.icon {
+      top: 0.125em;
+      max-width: 1em;
+      max-height: 1em;
+    }
+
+    &.avatar {
+      inset-inline-start: -1.75em;
+    }
+  }
+
+  .w-header__subtitle {
+    margin-inline-start: 0.3125rem;
+    font-weight: 400;
+  }
+
+  // Give padding to the rows inside of headers so that nested breadcrumbs aren't padded by their parent header el.
+  // Use w-header--with-padding for headers that don't contain .row elements.
+  &.w-header--with-padding,
+  > .row {
+    padding-top: 0.5rem;
+    padding-bottom: 1.5rem;
+    padding-inline-start: 110px;
+    padding-inline-end: 20px;
+  }
+
+  &.w-header--merged .w-breadcrumb {
+    padding-inline-start: $mobile-nav-indent;
+  }
+
+  .col {
+    float: left;
+    margin-inline-end: 2em;
+  }
+
+  .left {
+    float: left;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .right {
+    text-align: end;
+    float: right;
+  }
+
+  .search-form .icon {
+    @include svg-icon(1.2rem);
+    color: theme('colors.primary.DEFAULT');
+    position: absolute;
+    top: 0;
+    height: 100%;
+    inset-inline-start: 0.7em;
+  }
+
+  // For case where content below header should merge with it
+  &.w-header--merged {
+    margin-bottom: 0;
+    padding-bottom: 1rem;
+  }
+
+  &.w-header--no-border {
+    border: 0;
+  }
+
+  &.w-header--merged.w-header--no-border {
+    padding-bottom: 0;
+  }
+
+  .button {
+    background-color: $color-teal-darker;
+
+    &:hover {
+      background-color: $color-teal-dark;
+    }
+  }
+
+  .button-secondary {
+    color: $color-teal-darker;
+    background-color: transparent;
+  }
+
+  label {
+    @include visuallyhidden();
+  }
+
+  .error-message {
+    color: inherit;
+  }
+
+  .fields {
+    margin-top: -0.5em;
+
+    li {
+      padding-bottom: 0;
+    }
+
+    .field {
+      padding: 0;
+    }
+  }
+
+  .field-content {
+    width: auto;
+    padding: 0;
+  }
+
+  .last-updated {
+    ul {
+      padding: 0;
+    }
+
+    li {
+      display: inline;
+      margin-inline-end: 2em;
+    }
+
+    .avatar.small {
+      margin-inline-start: 0;
+    }
+
+    a {
+      font-weight: bold;
+    }
+  }
+}
+
+// Media for Windows High Contrast
+@media (forced-colors: $media-forced-colours) {
+  .w-header .field-content {
+    border: 0.1em solid $system-color-link-text;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .w-header {
+    .row {
+      padding-top: 1.5rem;
+      padding-inline-start: 90px;
+      padding-inline-end: 90px;
+    }
+
+    &.w-header--merged .w-breadcrumb {
+      padding-inline-start: 0;
+    }
+
+    .left {
+      float: left;
+      margin-inline-end: 0;
+
+      &:first-child {
+        padding-bottom: 0;
+        float: left;
+      }
+    }
+
+    .second {
+      clear: none;
+
+      .right,
+      .left {
+        float: right;
+      }
+    }
+
+    .col3 {
+      @include column(3);
+    }
+
+    .col3.actionbutton {
+      width: auto;
+    }
+
+    .col6 {
+      @include column(6);
+    }
+
+    .col9 {
+      @include column(9);
+    }
+  }
+}

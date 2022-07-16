@@ -1,0 +1,108 @@
+@mixin sidebar-toggle() {
+  @include transition(background-color $menu-transition-duration ease);
+
+  position: absolute;
+  top: $sidebar-toggle-spacing;
+  inset-inline-start: $sidebar-toggle-spacing;
+  color: $color-white;
+  width: $sidebar-toggle-size;
+  height: $sidebar-toggle-size;
+  box-sizing: border-box;
+  background: transparent;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid transparent;
+
+  svg {
+    width: 15px;
+    height: 16px;
+  }
+
+  @include media-breakpoint-up(sm) {
+    position: static;
+    inset-inline-end: $sidebar-toggle-spacing;
+    inset-inline-start: initial;
+  }
+
+  .has-messages & {
+    top: $sidebar-toggle-spacing + 70px;
+
+    @include media-breakpoint-up(sm) {
+      top: $sidebar-toggle-spacing;
+    }
+  }
+}
+
+.sidebar,
+.sidebar-loading {
+  @apply w-fixed w-flex w-flex-col w-h-full w-bg-primary w-z-sidebar w-transition-sidebar;
+  width: $menu-width;
+  inset-inline-start: 0;
+
+  @media (forced-colors: $media-forced-colours) {
+    border-inline-end: 1px solid transparent;
+  }
+
+  .icon--menuitem {
+    width: 1rem;
+    height: 1rem;
+    min-width: 1rem;
+  }
+
+  &--slim {
+    width: $menu-width-slim;
+  }
+
+  // The sidebar can move completely off-screen in mobile mode for extra room
+  &--hidden {
+    inset-inline-start: -$menu-width;
+  }
+
+  // When sidebar is completely closed and animations have finished
+  &--closed {
+    display: none;
+  }
+
+  &__inner {
+    // On medium, make it possible for the nav links to scroll.
+    @apply w-h-full w-bg-primary w-flex w-flex-col w-flex-nowrap;
+  }
+
+  &__collapse-toggle {
+    @include sidebar-toggle;
+    // All other styling is done with utility classes on this element
+  }
+
+  // When in mobile mode, hide the collapse-toggle and show the nav-toggle (which is defined in the .sidebar-nav-toggle class below)
+  &--mobile &__collapse-toggle {
+    display: none;
+  }
+}
+
+.sidebar-collapsed .sidebar-loading {
+  width: $menu-width-slim;
+}
+
+// This is a separate component as it needs to display in the header
+.sidebar-nav-toggle {
+  @apply w-z-sidebar-toggle;
+  @include sidebar-toggle;
+  display: none; // Nav toggle is for mobile only
+
+  &--mobile {
+    @apply w-bg-primary w-top-0 w-left-0 w-h-[50px] w-w-[50px] w-rounded-none hover:w-bg-primary-200;
+    display: grid;
+  }
+
+  &--open {
+    @apply w-fixed hover:w-bg-primary-200 hover:w-text-white;
+  }
+}
+
+// stylelint-disable no-invalid-position-at-import-rule
+@import 'SidebarPanel';
+@import 'menu/MenuItem';
+@import 'menu/SubMenuItem';
+@import 'modules/MainMenu';
+@import 'modules/WagtailBranding';
