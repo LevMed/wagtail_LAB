@@ -19,10 +19,11 @@ pipeline {
             }
         }
         stage("Deploy in Docker") {
-            node('Docker_Node01') {
-                steps {
-                    sh "docker run -d --name test_httpd httpd:latest"
-                }
+            node {
+                label "Docker_Node01"
+            }
+            steps {
+                sh "docker run -d --name test_httpd httpd:latest"
             }
         }
     }
