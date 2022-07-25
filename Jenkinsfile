@@ -19,9 +19,7 @@ pipeline {
             }
         }
         stage("Deploy in Docker") {
-            agent {
-                label 'docker_cloud'
-            }
+            node('Docker_Node01') {
                 steps {
                     sh "docker run -d --name test_httpd httpd:latest"
                 }
