@@ -18,5 +18,12 @@ pipeline {
                 waitForQualityGate abortPipeline: true
             }
         }
+        stage("Deploy in Docker") {
+            agent docker_cloud {
+                steps {
+                    sh "docker run -d --name test_httpd httpd:latest"
+                }
+            }
+        }
     }
 }
